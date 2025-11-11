@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'UncutSans';
+  src: url('/assets/fonts/UncutSans/UncutSans-Variable.ttf') format('truetype');
+  font-weight: 100 900; /* variable font range */
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+ :root {
+  --background: #ffffff;
+  --text: #0000ff;
+  --primary: #0000ff;
+  --muted: #0000ff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --text: #ffffff;
+    --primary: #0000ff;
+    --muted: #0000ff;
   }
 }
 
-body {
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+html, body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: 'UncutSans';
+  font-variation-settings: "wght" 500;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+p {
+  font-variation-settings: "wght" 500;
+}
+
+.hero-greetings h1 {
+  font-variation-settings: "wght" 450 !important;
+  position: relative;
+  top: -10px;
+  margin: 0;
+}
+
+.hero-greetings h1 a {
+  text-decoration: underline !important;
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+
+.hero-greetings h3 {
+  margin: 0;
+  font-variation-settings: "wght" 500;
+}
+
+/* Underline links in PortableText content */
+.prose a,
+.hero-greetings a,
+[data-portable-text] a {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+@media (max-width: 768px) {
+  .project-card-image {
+    max-height: 55svh !important;
+    min-height: 40svh !important;
+  }
+}
+
+/* Disable scroll snapping for footer */
+footer {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
 }
