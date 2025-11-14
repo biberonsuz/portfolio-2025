@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-interface VideoBlockProps {
+export default function VideoBlock({
+  src,
+  isIframe,
+  iframeProps,
+}: {
   src: string
   isIframe?: boolean
   iframeProps?: {
@@ -11,9 +15,7 @@ interface VideoBlockProps {
     allow: string
     allowFullScreen: boolean
   }
-}
-
-export default function VideoBlock({ src, isIframe, iframeProps }: VideoBlockProps) {
+}) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPortrait, setIsPortrait] = useState(false)
 

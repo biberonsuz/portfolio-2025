@@ -8,11 +8,7 @@ export interface ContactItem {
   label: string
 }
 
-interface HeaderClientProps {
-  contactItems: ContactItem[]
-}
-
-export default function HeaderClient({ contactItems }: HeaderClientProps) {
+export default function HeaderClient({ contactItems }: { contactItems: ContactItem[] }) {
   const pathname = usePathname()
 
   return (

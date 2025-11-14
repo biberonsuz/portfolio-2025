@@ -1,9 +1,5 @@
 import { PortableText, PortableTextBlock, PortableTextComponents } from '@portabletext/react'
 
-interface HeroProps {
-  bio?: PortableTextBlock[]
-}
-
 const components: PortableTextComponents = {
   block: {
     h1: ({ children }) => <h1 style={{ fontSize: 'clamp(1.875rem, 5vw, 3rem)' }}>{children}</h1>,
@@ -31,7 +27,7 @@ const components: PortableTextComponents = {
   },
 }
 
-export default function Hero({ bio }: HeroProps) {
+export default function Hero({ bio }: { bio?: PortableTextBlock[] }) {
   return (
     <section className="h-dvh flex items-center snap-start snap-always overflow-y-auto py-8">
       {bio && bio.length > 0 && (

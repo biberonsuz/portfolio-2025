@@ -4,23 +4,19 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { urlFor } from '@/sanity/lib/image'
 
-interface Project {
+export type Project = {
   _id: string
   title: string
   slug: { current: string }
   description: string
-  coverImage: any
+  coverImage: unknown
   technologies?: string[]
   liveUrl?: string
   githubUrl?: string
   coverImageLocation?: 'left' | 'right'
 }
 
-interface ProjectCardProps {
-  project: Project
-}
-
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project }: { project: Project }) {
   const router = useRouter()
   const imageUrl = project.coverImage ? urlFor(project.coverImage).url() : null
   const imageLocation = project.coverImageLocation || 'left'
@@ -55,10 +51,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
         <div className="relative min-w-0 max-w-full mt-4 md:flex-1 md:mt-8 overflow-y-auto">
-          <h1 className="inline text-2xl text-[var(--foreground)]">
+          <h1 className="inline text-2xl text-(--foreground)">
             {project.title}
           </h1>
-          <p className="my-4 text-[var(--muted)]" style={{ fontVariationSettings: '"wght" 450' }}>
+          <p className="my-4 text-(--muted)" style={{ fontVariationSettings: '"wght" 450' }}>
             {project.description}
           </p>
           {project.technologies && project.technologies.length > 0 && (
@@ -66,7 +62,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full bg-[var(--muted)] px-3 py-1 text-sm text-[color-mix(in_oklab,var(--foreground)_80%,transparent)]"
+                  className="rounded-full bg-(--muted) px-3 py-1 text-sm text-[color-mix(in_oklab,var(--foreground)_80%,transparent)]"
                 >
                   {tech}
                 </span>
@@ -80,7 +76,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-sm font-medium text-[var(--primary)] hover:opacity-90"
+                className="text-sm font-medium text-(--primary) hover:opacity-90"
               >
                 View Online →
               </a>
@@ -91,7 +87,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+                className="text-sm font-medium text-(--muted) hover:text-(--foreground)"
               >
                 GitHub →
               </a>

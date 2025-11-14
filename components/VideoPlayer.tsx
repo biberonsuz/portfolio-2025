@@ -2,11 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-interface VideoPlayerProps {
-  src: string
-}
-
-export default function VideoPlayer({ src }: VideoPlayerProps) {
+export default function VideoPlayer({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPortrait, setIsPortrait] = useState(false)
 

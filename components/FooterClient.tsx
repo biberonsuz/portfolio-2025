@@ -7,11 +7,7 @@ export interface ContactItem {
   label: string
 }
 
-interface FooterClientProps {
-  contactItems: ContactItem[]
-}
-
-export default function FooterClient({ contactItems }: FooterClientProps) {
+export default function FooterClient({ contactItems }: { contactItems: ContactItem[] }) {
   return (
     <footer className="mt-auto" style={{ minHeight: '50vh', background: 'var(--text)', color: 'var(--background)', overflowY: 'auto' }}>
       <div className="mx-auto max-w-7xl px-6 py-8 h-full flex items-center">

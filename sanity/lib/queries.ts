@@ -52,7 +52,14 @@ export const projectBySlugQuery = groq`
         ...,
         asset-> {
           _id,
-          url
+          url,
+          metadata {
+            dimensions {
+              aspectRatio,
+              width,
+              height
+            }
+          }
         }
       },
       videoUrl,

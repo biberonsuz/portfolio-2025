@@ -28,10 +28,10 @@ export default async function AboutPage() {
             />
           </div>
         )}
-        <h1 className="mb-4 text-4xl font-bold text-[var(--foreground)]">
+        <h1 className="mb-4 text-4xl font-bold text-(--foreground)">
           {settings?.name || 'About Me'}
         </h1>
-        <p className="text-xl text-[var(--muted)]">{settings?.role || 'Developer'}</p>
+        <p className="text-xl text-(--muted)">{settings?.role || 'Developer'}</p>
       </div>
 
       {settings?.bio && (
@@ -43,18 +43,18 @@ export default async function AboutPage() {
       )}
 
       <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-bold text-[var(--foreground)]">Get in Touch</h2>
+        <h2 className="mb-6 text-2xl font-bold text-(--foreground)">Get in Touch</h2>
       </section>
 
       <section>
-        <h2 className="mb-6 text-2xl font-bold text-[var(--foreground)]">Connect</h2>
+        <h2 className="mb-6 text-2xl font-bold text-(--foreground)">Connect</h2>
         <div className="flex gap-6">
           {settings?.github && (
             <a
               href={settings.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--muted)] hover:text-[var(--foreground)]"
+              className="text-(--muted) hover:text-(--foreground)"
             >
               GitHub
             </a>
@@ -64,7 +64,7 @@ export default async function AboutPage() {
               href={settings.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--muted)] hover:text-[var(--foreground)]"
+              className="text-(--muted) hover:text-(--foreground)"
             >
               LinkedIn
             </a>
@@ -74,7 +74,7 @@ export default async function AboutPage() {
               href={settings.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--muted)] hover:text-[var(--foreground)]"
+              className="text-(--muted) hover:text-(--foreground)"
             >
               Twitter
             </a>
