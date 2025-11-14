@@ -14,6 +14,8 @@ interface ContentBlock {
       metadata?: {
         dimensions?: {
           aspectRatio?: number
+          width?: number
+          height?: number
         }
       }
     }
