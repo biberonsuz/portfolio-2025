@@ -113,3 +113,22 @@ export const settingsQuery = groq`
   }
 `
 
+export const featuredFontProjectsQuery = groq`
+  *[_type == "fontProject" && featured == true] | order(order asc, _createdAt desc) {
+    _id,
+    title,
+    slug,
+    description,
+    sampleText,
+    fontVariationSettings,
+    githubUrl,
+    fontFiles[]{
+      _key,
+      asset->{
+        _id,
+        url
+      }
+    }
+  }
+`
+

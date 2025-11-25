@@ -68,6 +68,14 @@ async function getProject(slug: string) {
   return await client.fetch(projectBySlugQuery, { slug })
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = await getProject(slug)
+  return {
+    title: project?.title ? `${project.title} — Pınar Kazak` : 'Project — Pınar Kazak',
+  }
+}
+
 async function getProjects() {
   return await client.fetch(projectsQuery)
 }

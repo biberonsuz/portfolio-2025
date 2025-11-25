@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'project',
-  title: 'Project',
+  name: 'fontProject',
+  title: 'Font Project',
   type: 'document',
   fields: [
     defineField({
@@ -28,24 +28,29 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
+      name: 'sampleText',
+      title: 'Sample text',
+      type: 'string',
     }),
     defineField({
-      name: 'technologies',
-      title: 'Technologies',
+      name: 'fontFiles',
+      title: 'Font Files',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'file',
+          options: {
+            accept: '.woff,.woff2,.ttf,.otf,.eot',
+          },
+        },
+      ],
+      description: 'Upload font files (WOFF, WOFF2, TTF, OTF, EOT)',
     }),
     defineField({
-      name: 'liveUrl',
-      title: 'Live URL',
-      type: 'url',
+      name: 'fontVariationSettings',
+      title: 'Font Variation Settings',
+      type: 'string',
+      description: 'CSS font-variation-settings for variable fonts (e.g., "wght" 400 or "wght" 400, "wdth" 100)',
     }),
     defineField({
       name: 'githubUrl',
@@ -64,31 +69,10 @@ export default defineType({
       type: 'number',
       initialValue: 0,
     }),
-    defineField({
-      name: 'coverImageLocation',
-      title: 'Cover Image Location',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Left', value: 'left' },
-          { title: 'Right', value: 'right' },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'left',
-    }),
-    defineField({
-      name: 'contentBlocks',
-      title: 'Content Blocks',
-      type: 'array',
-      of: [{ type: 'contentBlock' }],
-      description: 'Add custom content blocks (image, video, or text editor) to create a flexible layout',
-    }),
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'coverImage',
     },
   },
 })

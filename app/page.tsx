@@ -3,6 +3,11 @@ import { featuredProjectsQuery, settingsQuery } from '@/sanity/lib/queries'
 import ProjectCard, { type Project } from '@/components/ProjectCard'
 import type { PortableTextBlock } from '@portabletext/react'
 import Hero from '@/components/Hero'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Pınar Kazak',
+}
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
