@@ -66,7 +66,7 @@ export default async function FontsPage() {
         }
         .font-card a {
           text-decoration: underline;
-          text-underline-offset: 0.35em;
+          text-underline-offset: 0.5em;
         }
       `}} />
       <main className="mx-auto max-w-7xl space-y-12 py-16">
