@@ -9,7 +9,7 @@ export interface ContactItem {
 
 export default function FooterClient({ contactItems }: { contactItems: ContactItem[] }) {
   return (
-    <footer className="mt-auto" style={{ minHeight: '50vh', background: 'var(--text)', color: 'var(--background)', overflowY: 'auto' }}>
+    <footer className="mt-auto px-4" style={{ minHeight: '50vh', background: 'var(--text)', color: 'var(--background)', overflowY: 'auto' }}>
       <div className="mx-auto max-w-7xl px-6 py-8 h-full flex items-center">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
           <p className="text-sm">

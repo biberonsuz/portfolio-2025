@@ -13,7 +13,7 @@ export default function HeaderClient({ contactItems }: { contactItems: ContactIt
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between py-4">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between py-4 px-4">
         <Link href="/" className="text-xl font-bold">
           PINAR KAZAK
         </Link>
