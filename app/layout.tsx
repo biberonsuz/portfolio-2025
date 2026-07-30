@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ConditionalLayout from "@/components/ConditionalLayout";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -16,11 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen bg-(--background) text-(--foreground) flex flex-col">
-        <Header />
-        <main className="flex-1 px-4">
-          {children}
-        </main>
-        <Footer />
+        <ConditionalLayout>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ConditionalLayout>
       </body>
     </html>
   );

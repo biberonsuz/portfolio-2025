@@ -109,7 +109,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     : []
 
   return (
-    <main className="mx-auto max-w-7xl  py-12">
+    <main className="mx-auto max-w-7xl py-12">
       <article>
         <div className="h-dvh flex items-center justify-center snap-start snap-always py-8">
           <div className="w-full max-w-7xl">

@@ -76,8 +76,14 @@ p {
   }
 }
 
-/* Disable scroll snapping for footer */
+/* Make footer a valid snap point so it can be scrolled to */
 footer {
-  scroll-snap-align: none;
+  scroll-snap-align: start;
   scroll-snap-stop: normal;
+}
+
+/* Disable scroll-snap for studio mode */
+body.studio-mode,
+body.studio-mode html {
+  scroll-snap-type: none;
 }
