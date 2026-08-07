@@ -14,15 +14,15 @@ export default function HeaderClient({ contactItems }: { contactItems: ContactIt
   return (
     <header className="sticky top-0 z-50 backdrop-blur-sm px-4">
       <nav className="mx-auto flex max-w-7xl items-center justify-between py-4">
-        <Link href="/" className="text-xl font-bold">
+        <Link href="/" className="shrink-0 text-xl font-bold whitespace-nowrap">
           PINAR KAZAK
         </Link>
-        <div className="flex gap-6">
+        <div className="flex gap-3 text-xs md:gap-6 md:text-base">
           {contactItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`transition-colors ${pathname === item.href ? 'font-medium' : ''}`}
+              className={`whitespace-nowrap transition-colors ${pathname === item.href ? 'font-medium' : ''}`}
             >
               {item.label}
             </Link>

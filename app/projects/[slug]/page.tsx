@@ -125,7 +125,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl font-medium text-(--primary) hover:opacity-90"
+                  className="text-xl font-medium text-(--text) hover:opacity-70"
                 >
                   View Online →
                 </a>
@@ -135,7 +135,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl font-medium text-(--muted) hover:text-(--foreground)"
+                  className="text-xl font-medium text-(--text) hover:opacity-70"
                 >
                   GitHub →
                 </a>

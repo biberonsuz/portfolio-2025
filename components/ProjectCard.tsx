@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -21,6 +22,27 @@ export default function ProjectCard({ project }: { project: Project }) {
   const imageUrl = project.coverImage ? urlFor(project.coverImage).url() : null
   const imageLocation = project.coverImageLocation || 'left'
   const isImageRight = imageLocation === 'right'
+
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [isClamped, setIsClamped] = useState(false)
+
+  // Only offer "Read more" when the clamp actually cuts the text off.
+  useEffect(() => {
+    const el = descriptionRef.current
+    if (!el || isExpanded) return
+
+    const measure = () => setIsClamped(el.scrollHeight > el.clientHeight + 1)
+    measure()
+
+    // The clamped paragraph's own height never changes, so watch the parent for
+    // width changes and re-measure once the variable font has swapped in.
+    const observer = new ResizeObserver(measure)
+    if (el.parentElement) observer.observe(el.parentElement)
+    document.fonts?.ready.then(measure)
+
+    return () => observer.disconnect()
+  }, [isExpanded, project.description])
 
   const handleCardClick = () => {
     router.push(`/projects/${project.slug.current}`)
@@ -50,13 +72,29 @@ export default function ProjectCard({ project }: { project: Project }) {
             />
           </div>
         )}
-        <div className="relative min-w-0 max-w-full mt-4 md:flex-1 md:mt-8 overflow-y-auto">
+        <div className="relative min-w-0 max-w-full mt-4 md:flex-1 md:mt-8">
           <h1 className="inline text-2xl text-(--foreground)">
             {project.title}
           </h1>
-          <p className="my-4 text-(--muted)" style={{ fontVariationSettings: '"wght" 450' }}>
+          <p
+            ref={descriptionRef}
+            className={`my-4 text-(--text) md:line-clamp-none ${isExpanded ? '' : 'line-clamp-5'}`}
+            style={{ fontVariationSettings: '"wght" 450' }}
+          >
             {project.description}
           </p>
+          {isClamped && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsExpanded((expanded) => !expanded)
+              }}
+              className="-mt-2 mb-4 text-sm font-medium text-(--text) underline underline-offset-4 md:hidden"
+            >
+              {isExpanded ? 'Read less' : 'Read more'}
+            </button>
+          )}
           {project.technologies && project.technologies.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
@@ -76,7 +114,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-sm font-medium text-(--primary) hover:opacity-90"
+                className="text-sm font-medium text-(--text) hover:opacity-70"
               >
                 View Online →
               </a>
@@ -87,7 +125,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-sm font-medium text-(--muted) hover:text-(--foreground)"
+                className="text-sm font-medium text-(--text) hover:opacity-70"
               >
                 GitHub →
               </a>
